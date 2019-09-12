@@ -39,6 +39,19 @@
         Prism.highlightElement(element);
     });
 </script>
+<style>
+    .is-locked {
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .is-locked-ios {
+         position: fixed;
+         overflow-y: scroll;
+         width: 100%;
+         height: auto;
+     }
+</style>
 <body>
 <div class="py-4">
     <div class="container">
@@ -72,6 +85,7 @@
 
             <script data-live-highlight>
                 pageLocker.setOptions({
+                    useInlineStyles:false,
                     onLock: () => {
                         document.documentElement.style.marginRight = scrollbarWidth() + 'px';
                     },
