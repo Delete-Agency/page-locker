@@ -35,9 +35,7 @@ class PageLocker {
                 this.options.target.classList.add(this.options.lockedClassIOS);
                 if (this.options.useInlineStyles) {
                     this.options.target.style.position = 'fixed';
-                    this.options.target.style.overflowY = 'scroll';
                     this.options.target.style.width = '100%';
-                    this.options.target.style.height = 'auto';
                 }
             } else {
                 this.options.target.classList.add(this.options.lockedClass);
