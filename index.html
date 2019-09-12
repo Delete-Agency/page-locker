@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>AxiosSingular examples</title>
+    <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
+    <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/themes/prism-okaidia.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"
+            integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@deleteagency/live-highlight@0.0.1/build/live-highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/scrollbarwidth@0.1.3/scrollbarWidth.min.js"></script>
+
+    <script src="build/page-locker.min.js"></script>
+</head>
+
+<script>
+    LiveHighlight.bootstrap((element, type) => {
+        function getLanguage(type) {
+            switch (type) {
+                case LiveHighlight.TYPE_JAVASCRIPT:
+                    return 'js';
+                case LiveHighlight.TYPE_STYLES:
+                    return 'css';
+                case LiveHighlight.TYPE_HTML:
+                    return 'markup';
+            }
+        }
+
+        element.className = `lang-${getLanguage(type)}`;
+        Prism.highlightElement(element);
+    });
+</script>
+<body>
+<div class="py-4">
+    <div class="container">
+        <h2>Simple example</h2>
+
+        <div data-live-highlight-target="simple"></div>
+
+        <div class="mb-5">
+            <div data-live-highlight="simple">
+                <button class="btn btn-primary" id="lock">Lock</button>
+                <button class="btn btn-primary" id="unlock">Unlock</button>
+            </div>
+
+            <script data-live-highlight="simple">
+                const lockButton = document.getElementById('lock');
+                const unlockButton = document.getElementById('unlock');
+
+                lockButton.addEventListener('click', () => {
+                    pageLocker.lock('main');
+                });
+
+                unlockButton.addEventListener('click', () => {
+                    pageLocker.unlock('main');
+                })
+            </script>
+
+            <p>
+                In addition we can extend the behavior with onLock onUnlock
+                Lets do this and take scrollbar width into account (calculated with https://github.com/felixexter/scrollbarWidth)
+            </p>
+
+            <script data-live-highlight>
+                pageLocker.setOptions({
+                    onLock: () => {
+                        document.documentElement.style.marginRight = scrollbarWidth() + 'px';
+                    },
+                    onUnlock: () => {
+                        document.documentElement.style.marginRight = '0';
+                    }
+                })
+            </script>
+        </div>
+
+        <div class="mb-5">
+            <p>Some Lorem Ipsum content below to make page long enough for scrolling</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis id risus quis maximus. Nunc justo magna, sagittis eu pretium in, lacinia commodo risus. Fusce nec rutrum odio. Maecenas mattis metus nec ultricies efficitur. Proin nunc enim, dictum a turpis non, rutrum interdum nisl. Phasellus sed interdum mauris, ut efficitur dui. Fusce maximus tempus massa in euismod. Aenean euismod sed diam ac dapibus. Donec accumsan eget tellus a porta. Sed a lorem a mi scelerisque aliquet ac vel nunc. Quisque eleifend orci a dapibus lacinia. Integer quis sollicitudin diam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer tristique sagittis egestas.
+
+                Mauris rhoncus metus justo, non viverra metus rhoncus ut. Morbi dolor lectus, mollis id ante sit amet, cursus egestas enim. Phasellus feugiat, orci ac posuere rhoncus, urna mauris lacinia leo, a venenatis urna urna eget eros. Nunc sed turpis ante. Proin quis ligula lacus. Praesent pulvinar ornare pretium. In hac habitasse platea dictumst.
+
+                Quisque nec quam mattis, elementum ex in, tristique nisi. Vestibulum placerat congue sapien scelerisque faucibus. Aenean quis orci ac ex luctus semper nec ut velit. Pellentesque lorem leo, convallis vel ex ac, faucibus ullamcorper augue. Mauris in accumsan orci, eu accumsan purus. Nullam tempor ex non sem pellentesque, semper ornare magna congue. Cras vel elementum nisl, id eleifend justo.
+
+                Curabitur ligula erat, faucibus non aliquam at, pharetra sed eros. Praesent aliquam non enim eget dapibus. Etiam molestie dui ac ante tincidunt, eu fermentum est sagittis. Phasellus non arcu et leo bibendum condimentum. Nullam in felis consectetur, mattis risus eget, tincidunt lacus. Etiam vel orci et elit lacinia dictum. In rutrum tempus accumsan. Ut non tempor nunc. Fusce quis metus aliquam, euismod mi in, congue tellus. Maecenas eget ante nisi. Vestibulum eget bibendum justo, sit amet placerat velit. Quisque hendrerit nisl a lorem tincidunt egestas. Integer posuere molestie varius. Duis eget elit ac dolor tincidunt iaculis.
+
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed vitae cursus est. Nam dui ex, tristique eget tortor nec, porttitor posuere orci. Vivamus hendrerit magna massa, quis tempor mauris accumsan sed. Nam non efficitur magna. Fusce ultricies non dolor ac condimentum. Curabitur eu consequat mauris. Sed efficitur iaculis accumsan. Sed volutpat felis ipsum, pulvinar eleifend justo pulvinar in. Ut finibus vehicula turpis eget molestie. Vestibulum non purus pharetra, pulvinar elit vel, feugiat diam.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis id risus quis maximus. Nunc justo magna, sagittis eu pretium in, lacinia commodo risus. Fusce nec rutrum odio. Maecenas mattis metus nec ultricies efficitur. Proin nunc enim, dictum a turpis non, rutrum interdum nisl. Phasellus sed interdum mauris, ut efficitur dui. Fusce maximus tempus massa in euismod. Aenean euismod sed diam ac dapibus. Donec accumsan eget tellus a porta. Sed a lorem a mi scelerisque aliquet ac vel nunc. Quisque eleifend orci a dapibus lacinia. Integer quis sollicitudin diam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer tristique sagittis egestas.
+
+                Mauris rhoncus metus justo, non viverra metus rhoncus ut. Morbi dolor lectus, mollis id ante sit amet, cursus egestas enim. Phasellus feugiat, orci ac posuere rhoncus, urna mauris lacinia leo, a venenatis urna urna eget eros. Nunc sed turpis ante. Proin quis ligula lacus. Praesent pulvinar ornare pretium. In hac habitasse platea dictumst.
+
+                Quisque nec quam mattis, elementum ex in, tristique nisi. Vestibulum placerat congue sapien scelerisque faucibus. Aenean quis orci ac ex luctus semper nec ut velit. Pellentesque lorem leo, convallis vel ex ac, faucibus ullamcorper augue. Mauris in accumsan orci, eu accumsan purus. Nullam tempor ex non sem pellentesque, semper ornare magna congue. Cras vel elementum nisl, id eleifend justo.
+
+                Curabitur ligula erat, faucibus non aliquam at, pharetra sed eros. Praesent aliquam non enim eget dapibus. Etiam molestie dui ac ante tincidunt, eu fermentum est sagittis. Phasellus non arcu et leo bibendum condimentum. Nullam in felis consectetur, mattis risus eget, tincidunt lacus. Etiam vel orci et elit lacinia dictum. In rutrum tempus accumsan. Ut non tempor nunc. Fusce quis metus aliquam, euismod mi in, congue tellus. Maecenas eget ante nisi. Vestibulum eget bibendum justo, sit amet placerat velit. Quisque hendrerit nisl a lorem tincidunt egestas. Integer posuere molestie varius. Duis eget elit ac dolor tincidunt iaculis.
+
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed vitae cursus est. Nam dui ex, tristique eget tortor nec, porttitor posuere orci. Vivamus hendrerit magna massa, quis tempor mauris accumsan sed. Nam non efficitur magna. Fusce ultricies non dolor ac condimentum. Curabitur eu consequat mauris. Sed efficitur iaculis accumsan. Sed volutpat felis ipsum, pulvinar eleifend justo pulvinar in. Ut finibus vehicula turpis eget molestie. Vestibulum non purus pharetra, pulvinar elit vel, feugiat diam.
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
