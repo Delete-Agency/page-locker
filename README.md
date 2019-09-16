@@ -36,7 +36,7 @@ Defines what element should we apply our lock logic to
 Type: `boolean`<br>
 Default: `true`
 
-Use default online styles. If `false` you should defined your styles with `options.lockedClass` and `options.lockedClassIOS`
+Whether or not use out-of-the-box inline styles. If set to `false` you should defined your styles with `options.lockedClass` and `options.lockedClassIOS`
 
 ### lockedClass
 
