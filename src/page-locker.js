@@ -1,3 +1,5 @@
+import scrollbarHandler from './scrollbar-handler';
+
 class PageLocker {
     constructor() {
         this._initialScrollPosition = 0;
@@ -15,10 +17,26 @@ class PageLocker {
         };
 
         this.options = this.defaultOptions;
+        this._styleTag = this._makeStyleTag();
     }
 
     setOptions(options = {}) {
         this.options = { ...this.defaultOptions, ...options };
+    }
+
+    _makeStyleTag() {
+        const tag = document.createElement('style');
+        tag.setAttribute('type', 'text/css');
+        document.head.appendChild(tag);
+        return tag;
+    }
+
+    _compensate() {
+        const scrollSize = scrollbarHandler.getScrollbarSize();
+        if (this._scrollbarSize !== scrollSize) {
+            this._scrollbarSize = scrollSize;
+            this._styleTag.innerHTML = `.${this.options.lockedClass} .compensate-scroll { padding-right: ${scrollSize}px}`;
+        }
     }
 
     lock(retainerId) {
@@ -38,6 +56,7 @@ class PageLocker {
                     this.options.target.style.width = '100%';
                 }
             } else {
+                this._compensate();
                 this.options.target.classList.add(this.options.lockedClass);
                 if (this.options.useInlineStyles) {
                     this.options.target.style.overflowY = 'hidden';
