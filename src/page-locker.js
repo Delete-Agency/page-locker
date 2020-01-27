@@ -1,15 +1,16 @@
-import scrollbarHandler from './scrollbar-handler';
-
 class PageLocker {
     constructor() {
         this._initialScrollPosition = 0;
         this._retainers = {};
         this._isLocked = false;
+        this._isCompensated = false;
 
         this.defaultOptions = {
             target: document.documentElement,
             useInlineStyles: true,
             lockedClass: 'is-locked',
+            needCompensate: true,
+            compensateClass: 'compensate-scroll',
             checkIOS: true,
             lockedClassIOS: 'is-locked-ios',
             onLock: null,
@@ -32,11 +33,21 @@ class PageLocker {
     }
 
     _compensate() {
-        const scrollSize = scrollbarHandler.getScrollbarSize();
-        if (this._scrollbarSize !== scrollSize) {
-            this._scrollbarSize = scrollSize;
-            this._styleTag.innerHTML = `.${this.options.lockedClass} .compensate-scroll { padding-right: ${scrollSize}px}`;
+        const scrollSize = this.getScrollbarSize();
+        if (this.scrollbarSize !== scrollSize) {
+            this.scrollbarSize = scrollSize;
+            this._styleTag.innerHTML = `.${this.options.lockedClass} ${this.options.compensateClass} { padding-right: ${scrollSize}px}`;
         }
+    }
+
+    getScrollbarSize() {
+        const scrollDiv = document.createElement('div');
+        scrollDiv.style.cssText =
+            'width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;';
+        document.body.appendChild(scrollDiv);
+        const scrollbarSize = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        document.body.removeChild(scrollDiv);
+        return scrollbarSize;
     }
 
     lock(retainerId) {
@@ -56,7 +67,10 @@ class PageLocker {
                     this.options.target.style.width = '100%';
                 }
             } else {
-                this._compensate();
+                if (this.options.needCompensate && !this._isCompensated) {
+                    this._isCompensated = true;
+                    this._compensate();
+                }
                 this.options.target.classList.add(this.options.lockedClass);
                 if (this.options.useInlineStyles) {
                     this.options.target.style.overflowY = 'hidden';
