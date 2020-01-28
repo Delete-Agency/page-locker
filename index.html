@@ -37,7 +37,7 @@
     });
 </script>
 <body>
-<div class="py-4">
+<div class="py-4 compensate-scroll">
     <div class="container">
         <h2>Simple example</h2>
 
@@ -63,19 +63,24 @@
             </script>
 
             <p>
-                In addition we can extend the behavior with onLock onUnlock
-                Lets do this and take scrollbar width into account (calculated with https://github.com/felixexter/scrollbarWidth)
+                pageLocker has logic for compensate twitching of page while scrollbar is showing or hiding
+                you can use default css class 'compensate-scroll' on your nodes
             </p>
 
             <script data-live-highlight>
-                pageLocker.setOptions({
-                    onLock: () => {
-                        document.documentElement.style.marginRight = scrollbarWidth() + 'px';
-                    },
-                    onUnlock: () => {
-                        document.documentElement.style.marginRight = '0';
-                    }
-                })
+
+                '<body class="body compensate-scroll">...</body>'
+
+            </script>
+
+            <p>
+                And you can use it for your components via pageLocker
+            </p>
+
+            <script data-live-highlight>
+
+                const scrollbarSize = pageLocker.getScrollbarSize();
+
             </script>
         </div>
 

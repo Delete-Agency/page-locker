@@ -65,6 +65,10 @@ Default: `null`
 
 ## API
 
+### pageLocaker.getScrollBarSize()
+
+return width of scrollBar
+
 ### pageLocker.setOptions(options)
 
 Sets options described in Options section
