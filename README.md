@@ -24,7 +24,7 @@ pageLocker.lock('modal');
 
 ## Options
 
-### targetElement
+### target
 
 Type: `HTMLElement`<br>
 Default: `document.documentElement`
@@ -37,6 +37,18 @@ Type: `boolean`<br>
 Default: `true`
 
 Whether or not use out-of-the-box inline styles. If set to `false` you should defined your styles with `options.lockedClass` and `options.lockedClassIOS`
+
+### needCompensate
+
+Type: `boolean`<br>
+Default: `true`
+
+If you would like to use another default way for compensate twictching page, then turn off it
+
+### compensateClass
+
+Type: `string`<br>
+Default: `compensate-scroll`
 
 ### lockedClass
 

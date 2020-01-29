@@ -36,7 +36,7 @@ class PageLocker {
         const scrollSize = this.getScrollbarSize();
         if (this.scrollbarSize !== scrollSize) {
             this.scrollbarSize = scrollSize;
-            this._styleTag.innerHTML = `.${this.options.lockedClass} ${this.options.compensateClass} { padding-right: ${scrollSize}px}`;
+            this._styleTag.innerHTML = `.${this.options.lockedClass} .${this.options.compensateClass} { padding-right: ${scrollSize}px}`;
         }
     }
 
