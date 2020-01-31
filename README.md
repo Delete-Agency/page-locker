@@ -23,11 +23,12 @@ import { pageLocker } from  '@deleteagency/page-locker';
 pageLocker.lock('modal');
 ```
 
-or you can import class create or extend, modify and than create instance.
+you can import class create or : extend, modify and than create instance specified for your project.
 
 ```js
-import PageLocker from  '@deleteagency/page-locker';
-const pageLocker = new PageLocker();
+import { PageLocker } from  '@deleteagency/page-locker';
+
+const myLocker = new PageLocker();
 ```
 
 ## Options

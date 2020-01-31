@@ -1,4 +1,4 @@
-export default class PageLocker {
+class PageLocker {
     constructor() {
         this._initialScrollPosition = 0;
         this._retainers = {};
@@ -118,3 +118,5 @@ export default class PageLocker {
         return !!navigator.platform.match(/iPhone|iPod|iPad/);
     }
 }
+
+export default PageLocker;
