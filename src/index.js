@@ -1,3 +1,4 @@
-import pageLocker from './page-locker';
+import PageLocker from './page-locker';
 
-export { pageLocker };
+const pageLocker = new PageLocker();
+export { PageLocker, pageLocker };

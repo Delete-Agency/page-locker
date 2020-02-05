@@ -119,5 +119,4 @@ class PageLocker {
     }
 }
 
-const instance = new PageLocker();
-export default instance;
+export default PageLocker;

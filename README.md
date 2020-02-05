@@ -16,10 +16,19 @@ $ npm install @deleteagency/page-locker
 
 ## Usage
 
+you can import ready instance
 ```js
-import pageLocker from  '@deleteagency/page-locker';
+import { pageLocker } from  '@deleteagency/page-locker';
 
 pageLocker.lock('modal');
+```
+
+you can import class create or : extend, modify and than create instance specified for your project.
+
+```js
+import { PageLocker } from  '@deleteagency/page-locker';
+
+const myLocker = new PageLocker();
 ```
 
 ## Options
