@@ -4,8 +4,7 @@
 
 ## Motivation
 
-On opening modal window you have to prevent ability to scroll of your main page, so in common you may just set "overflow: hidden;" on document.documentElement but it won't work with iOS devices, there is need a little bit tricky way via using "position: fixed" and setting scroll position.
-So we can just use two simple methods for lock and unlock a page.
+On opening a modal window you have to prevent your main page from scrolling, so generally you can just set "overflow: hidden" on document.documentElement, but it won't work with iOS devices, so there is a need for a little bit tricky way via using "position: fixed" and setting the scroll position. So we can just use two simple methods to lock and unlock a page.
 
 ## Installation
 
