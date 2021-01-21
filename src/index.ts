@@ -37,7 +37,7 @@ export class PageLocker {
 
     public unlock = (id: string): void => {
         this._retainers[id] = false;
-        if (this._isFree() && this._isLocked) {
+        if (this._isUnlocked() && this._isLocked) {
             const { _target, _isIOS, _lockedClass } = this;
             _target.classList.remove(_lockedClass);
             if (_isIOS) {
@@ -48,6 +48,6 @@ export class PageLocker {
         }
     };
 
-    private _isFree = (): boolean =>
+    private _isUnlocked = (): boolean =>
         Object.keys(this._retainers).every((key) => this._retainers[key] === false);
 }
