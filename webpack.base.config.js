@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
             'index': './src/index.ts'
         },
         output: {
-            filename: './[name].min.js',
+            filename: './[name].js',
             library: 'page-locker',
             libraryTarget: 'umd',
             umdNamedDefine: true

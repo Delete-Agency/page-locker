@@ -2,7 +2,7 @@
   "name": "@deleteagency/page-locker",
   "version": "2.0.4",
   "description": "",
-  "main": "dist/index.min.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Delete-Agency/page-locker.git"
