@@ -12,6 +12,6 @@ export declare class PageLocker {
     constructor();
     lock: (id: string) => void;
     unlock: (id: string) => void;
-    private _isFree;
+    private _isUnlocked;
 }
 //# sourceMappingURL=index.d.ts.map

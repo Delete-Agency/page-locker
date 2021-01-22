@@ -16,7 +16,8 @@
     "build:watch": "webpack --config webpack.base.config.js --watch",
     "build:types": "tsc -d --declarationDir dist --declarationMap --emitDeclarationOnly",
     "test": "echo \"No test specified\"",
-    "prepublishOnly": "npm run build && npm run build:types"
+    "prepublishOnly": "npm run build && npm run build:types",
+    "prepublish": "npm run build && npm run build:types"
   },
   "author": "",
   "license": "MIT",
