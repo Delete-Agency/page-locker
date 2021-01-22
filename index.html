@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@deleteagency/live-highlight@0.0.1/build/live-highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/scrollbarwidth@0.1.3/scrollbarWidth.min.js"></script>
 
-    <script src="demo/dist/page-locker.min.js"></script>
+    <script src="dist/index.min.js"></script>
 </head>
 
 <script>
@@ -52,6 +52,7 @@
             <script data-live-highlight="simple">
                 const lockButton = document.getElementById('lock');
                 const unlockButton = document.getElementById('unlock');
+                const pageLocker = new PageLocker();
 
                 lockButton.addEventListener('click', () => {
                     pageLocker.lock('main');
@@ -60,27 +61,6 @@
                 unlockButton.addEventListener('click', () => {
                     pageLocker.unlock('main');
                 })
-            </script>
-
-            <p>
-                pageLocker has logic for compensate twitching of page while scrollbar is showing or hiding
-                you can use default css class 'compensate-scroll' on your nodes
-            </p>
-
-            <script data-live-highlight>
-
-                '<body class="body compensate-scroll">...</body>'
-
-            </script>
-
-            <p>
-                And you can use it for your components via pageLocker
-            </p>
-
-            <script data-live-highlight>
-
-                const scrollbarSize = pageLocker.getScrollbarSize();
-
             </script>
         </div>
 
