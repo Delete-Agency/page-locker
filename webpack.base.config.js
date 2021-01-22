@@ -10,7 +10,9 @@ module.exports = (env, argv) => {
         },
         output: {
             filename: './[name].min.js',
-            libraryTarget: 'umd'
+            library: 'page-locker',
+            libraryTarget: 'umd',
+            umdNamedDefine: true
         },
         resolve: {
             extensions: ['.ts'],
