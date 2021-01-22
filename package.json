@@ -3,9 +3,6 @@
   "version": "2.0.3",
   "description": "",
   "main": "dist/index.min.js",
-  "files": [
-    "src"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Delete-Agency/page-locker.git"
