@@ -12,7 +12,8 @@ module.exports = (env, argv) => {
             filename: './[name].js',
             library: 'page-locker',
             libraryTarget: 'umd',
-            umdNamedDefine: true
+            umdNamedDefine: true,
+            globalObject: 'this',
         },
         resolve: {
             extensions: ['.ts'],
