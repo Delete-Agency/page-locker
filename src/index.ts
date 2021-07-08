@@ -42,7 +42,7 @@ export class PageLocker {
             _target.classList.remove(_lockedClass);
             if (_isIOS) {
                 _target.style.top = '';
-                document.body.scrollTo(0, this._initialScrollPosition);
+                _target.scrollTo(0, this._initialScrollPosition);
             }
             this._isLocked = false;
         }
